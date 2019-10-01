@@ -1,0 +1,875 @@
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ docker --version
+Docker version 19.03.2, build 6a30dfc
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ docker info
+Client:
+ Debug Mode: false
+
+Server:
+ Containers: 6
+  Running: 0
+  Paused: 0
+  Stopped: 6
+ Images: 8
+ Server Version: 19.03.2
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Native Overlay Diff: true
+ Logging Driver: json-file
+ Cgroup Driver: cgroupfs
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 894b81a4b802e4eb2a91d1ce216b8817763c29fb
+ runc version: 425e105d5a03fabd737a126ad93d62a9eeede87f
+ init version: fec3683
+ Security Options:
+  seccomp
+   Profile: default
+ Kernel Version: 4.9.184-linuxkit
+ Operating System: Docker Desktop
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 2
+ Total Memory: 1.934GiB
+ Name: docker-desktop
+ ID: WDBQ:654O:HMFM:4ZEL:TBYJ:F4WM:CRU3:2RO2:LXLA:R637:6OFY:UHC6
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: true
+  File Descriptors: 28
+  Goroutines: 42
+  System Time: 2019-09-28T00:17:39.7811885Z
+  EventsListeners: 1
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Live Restore Enabled: false
+ Product License: Community Engine
+
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ docker version
+Client: Docker Engine - Community
+ Version:           19.03.2
+ API version:       1.40
+ Go version:        go1.12.8
+ Git commit:        6a30dfc
+ Built:             Thu Aug 29 05:26:49 2019
+ OS/Arch:           windows/amd64
+ Experimental:      false
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          19.03.2
+  API version:      1.40 (minimum version 1.12)
+  Go version:       go1.12.8
+  Git commit:       6a30dfc
+  Built:            Thu Aug 29 05:32:21 2019
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v1.2.6
+  GitCommit:        894b81a4b802e4eb2a91d1ce216b8817763c29fb
+ runc:
+  Version:          1.0.0-rc8
+  GitCommit:        425e105d5a03fabd737a126ad93d62a9eeede87f
+ docker-init:
+  Version:          0.18.0
+  GitCommit:        fec3683
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ docker image ls
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+hl533/dockertutorial   part2               12ac3ee63394        2 days ago          143MB
+friendlyhello          latest              12ac3ee63394        2 days ago          143MB
+python                 2.7-slim            f462855313cd        2 weeks ago         137MB
+tutorialpart1          latest              fce289e99eb9        8 months ago        1.84kB
+hello-world            latest              fce289e99eb9        8 months ago        1.84kB
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ docker container ls --all
+CONTAINER ID        IMAGE                        COMMAND                  CREATED              STATUS                          PORTS               NAMES
+6ffaf55209f5        hello-world                  "/hello"                 About a minute ago   Exited (0) About a minute ago                       nostalgic_mestorf
+8f25ba7c93e6        hl533/dockertutorial:part2   "/bin/sh -c '[python…"   2 days ago           Exited (127) 2 days ago                             trusting_shaw
+8cfaa6e457f1        friendlyhello                "/bin/sh -c '[python…"   2 days ago           Exited (127) 2 days ago                             keen_black
+edc8488ec623        friendlyhello                "/bin/sh -c '[python…"   2 days ago           Exited (127) 2 days ago                             romantic_banzai
+37dced73949f        friendlyhello                "/bin/sh -c '[python…"   2 days ago           Exited (127) 2 days ago                             wizardly_zhukovsky
+3ee1ebbc757c        hello-world                  "/hello"                 2 days ago           Exited (0) 2 days ago                               wizardly_pare
+453f41a654e3        hello-world                  "/hello"                 2 days ago           Exited (0) 2 days ago                               nostalgic_meninsky
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ pwd
+/c/Users/Nerdtastic
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ ls
+ 048298C9A4D3490B9FF9AB023A9238F3.TMP/   NetHood@
+'3D Objects'/                            NTUSER.DAT
+ ansel/                                  ntuser.dat.LOG1
+ AppData/                                ntuser.dat.LOG2
+'Application Data'@                      NTUSER.DAT{612c1009-7498-11e9-a5a1-10bf48883ba6}.TM.blf
+ collabjs2/                              NTUSER.DAT{612c1009-7498-11e9-a5a1-10bf48883ba6}.TMContainer00000000000000000001.regtrans-ms
+ Contacts/                               NTUSER.DAT{612c1009-7498-11e9-a5a1-10bf48883ba6}.TMContainer00000000000000000002.regtrans-ms
+ Cookies@                                ntuser.ini
+ Desktop/                                OneDrive/
+ Docker/                                 Pictures/
+ Documents/                              PrintHood@
+ Downloads/                              README.md
+ Favorites/                              Recent@
+ Folder/                                'Saved Games'/
+ IS601-MiniProject1-HLKRRR/              Searches/
+ IS601-NJIT/                             SendTo@
+ Links/                                  SkyDrive/
+'Local Settings'@                       'Start Menu'@
+ LuminanceHDR/                           Templates@
+ MicrosoftEdgeBackups/                   test/
+ Music/                                  Tracing/
+'My Documents'@                          Videos/
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ ls -all
+total 11915
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 27 11:53  ./
+drwxr-xr-x 1 Nerdtastic 197609       0 May 12 04:30  ../
+drwxr-xr-x 1 Nerdtastic 197609       0 Jan  9  2016  .android/
+-rw-r--r-- 1 Nerdtastic 197609    3643 Sep 25 22:17  .bash_history
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 25 16:16  .docker/
+-rw-r--r-- 1 Nerdtastic 197609      84 Sep 11 20:46  .gitconfig
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 27 09:01  .kaggle/
+drwxr-xr-x 1 Nerdtastic 197609       0 Jun 10 15:43  .Origin/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 25 20:26  .PyCharm2019.2/
+drwxr-xr-x 1 Nerdtastic 197609       0 Jun 10 15:43  .QtWebEngineProcess/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 25 19:25  .ssh/
+drwxr-xr-x 1 Nerdtastic 197609       0 Apr 21  2017  .thumb/
+-rw-r--r-- 1 Nerdtastic 197609   17271 Sep 27 11:53  .viminfo
+drwxr-xr-x 1 Nerdtastic 197609       0 Nov 16  2012  048298C9A4D3490B9FF9AB023A9238F3.TMP/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 09:05 '3D Objects'/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep  8  2018  ansel/
+drwxr-xr-x 1 Nerdtastic 197609       0 May 12 04:31  AppData/
+lrwxrwxrwx 1 Nerdtastic 197609      35 May 12 04:30 'Application Data' -> /c/Users/Nerdtastic/AppData/Roaming/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 11 20:25  collabjs2/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 09:05  Contacts/
+lrwxrwxrwx 1 Nerdtastic 197609      63 May 12 04:30  Cookies -> /c/Users/Nerdtastic/AppData/Local/Microsoft/Windows/INetCookies/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 16 16:45  Desktop/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 25 19:34  Docker/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 18:24  Documents/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 16:42  Downloads/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 24 06:41  Favorites/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 25 15:58  Folder/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 25 22:58  IS601-MiniProject1-HLKRRR/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 25 20:30  IS601-NJIT/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 09:05  Links/
+lrwxrwxrwx 1 Nerdtastic 197609      33 May 12 04:30 'Local Settings' -> /c/Users/Nerdtastic/AppData/Local/
+drwxr-xr-x 1 Nerdtastic 197609       0 May  5  2013  LuminanceHDR/
+drwxr-xr-x 1 Nerdtastic 197609       0 Dec  4  2017  MicrosoftEdgeBackups/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 09:05  Music/
+lrwxrwxrwx 1 Nerdtastic 197609      29 May 12 04:30 'My Documents' -> /c/Users/Nerdtastic/Documents/
+lrwxrwxrwx 1 Nerdtastic 197609      71 May 12 04:30  NetHood -> '/c/Users/Nerdtastic/AppData/Roaming/Microsoft/Windows/Network Shortcuts'/
+-rw-r--r-- 1 Nerdtastic 197609 7864320 Sep 12 16:39  NTUSER.DAT
+-rw-r--r-- 1 Nerdtastic 197609 1572864 May 12 04:30  ntuser.dat.LOG1
+-rw-r--r-- 1 Nerdtastic 197609 1507328 May 12 04:30  ntuser.dat.LOG2
+-rw-r--r-- 1 Nerdtastic 197609   65536 May 12 04:30  NTUSER.DAT{612c1009-7498-11e9-a5a1-10bf48883ba6}.TM.blf
+-rw-r--r-- 1 Nerdtastic 197609  524288 May 12 04:30  NTUSER.DAT{612c1009-7498-11e9-a5a1-10bf48883ba6}.TMContainer00000000000000000001.regtrans-ms
+-rw-r--r-- 1 Nerdtastic 197609  524288 May 12 04:30  NTUSER.DAT{612c1009-7498-11e9-a5a1-10bf48883ba6}.TMContainer00000000000000000002.regtrans-ms
+-rw-r--r-- 1 Nerdtastic 197609      20 May 12 04:37  ntuser.ini
+drwxr-xr-x 1 Nerdtastic 197609       0 Aug  2  2015  OneDrive/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 09:05  Pictures/
+lrwxrwxrwx 1 Nerdtastic 197609      71 May 12 04:30  PrintHood -> '/c/Users/Nerdtastic/AppData/Roaming/Microsoft/Windows/Printer Shortcuts'/
+-rw-r--r-- 1 Nerdtastic 197609     101 Sep 25 19:38  README.md
+lrwxrwxrwx 1 Nerdtastic 197609      60 May 12 04:30  Recent -> /c/Users/Nerdtastic/AppData/Roaming/Microsoft/Windows/Recent/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 09:05 'Saved Games'/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 09:05  Searches/
+lrwxrwxrwx 1 Nerdtastic 197609      60 May 12 04:30  SendTo -> /c/Users/Nerdtastic/AppData/Roaming/Microsoft/Windows/SendTo/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 27 01:37  SkyDrive/
+lrwxrwxrwx 1 Nerdtastic 197609      64 May 12 04:30 'Start Menu' -> '/c/Users/Nerdtastic/AppData/Roaming/Microsoft/Windows/Start Menu'/
+lrwxrwxrwx 1 Nerdtastic 197609      63 May 12 04:30  Templates -> /c/Users/Nerdtastic/AppData/Roaming/Microsoft/Windows/Templates/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 20 22:21  test/
+drwxr-xr-x 1 Nerdtastic 197609       0 Jun 21  2015  Tracing/
+drwxr-xr-x 1 Nerdtastic 197609       0 Sep 12 16:42  Videos/
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~
+$ cd .docker/
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker
+$ ls
+config.json  daemon.json
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker
+$ mkdir dockeragain
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker
+$ cd dockeragain/
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ touch Dockerfile
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi Dockerfile
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ touch requirements.txt app.py
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ ls
+app.py  Dockerfile  requirements.txt
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi Dockerfile
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi requirements.txt
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi app.py
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi Dockerfile
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker build --tag=friendlyhello
+"docker build" requires exactly 1 argument.
+See 'docker build --help'.
+
+Usage:  docker build [OPTIONS] PATH | URL | -
+
+Build an image from a Dockerfile
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker build --tag=friendlyhello .
+Sending build context to Docker daemon   5.12kB
+Step 1/7 : FROM python:2.7-slim
+ ---> f462855313cd
+Step 2/7 : WORKDIR /app
+ ---> Using cache
+ ---> 865c5a77adba
+Step 3/7 : COPY . /app
+ ---> 91fd88e57bb2
+Step 4/7 : RUN pip install --trusted-host pypi.python.org -r requirements.txt
+ ---> Running in b0b0442c9e15
+DEPRECATION: Python 2.7 will reach the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 won't be maintained after that date. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
+Collecting Flask (from -r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/9b/93/628509b8d5dc749656a9641f4caf13540e2cdec85276964ff8f43bbb1d3b/Flask-1.1.1-py2.py3-none-any.whl (94kB)
+Collecting Redis (from -r requirements.txt (line 2))
+  Downloading https://files.pythonhosted.org/packages/bd/64/b1e90af9bf0c7f6ef55e46b81ab527b33b785824d65300bb65636534b530/redis-3.3.8-py2.py3-none-any.whl (66kB)
+Collecting click>=5.1 (from Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/fa/37/45185cb5abbc30d7257104c434fe0b07e5a195a6847506c074527aa599ec/Click-7.0-py2.py3-none-any.whl (81kB)
+Collecting Werkzeug>=0.15 (from Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/ce/42/3aeda98f96e85fd26180534d36570e4d18108d62ae36f87694b476b83d6f/Werkzeug-0.16.0-py2.py3-none-any.whl (327kB)
+Collecting itsdangerous>=0.24 (from Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/76/ae/44b03b253d6fade317f32c24d100b3b35c2239807046a4c953c7b89fa49e/itsdangerous-1.1.0-py2.py3-none-any.whl
+Collecting Jinja2>=2.10.1 (from Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/1d/e7/fd8b501e7a6dfe492a433deb7b9d833d39ca74916fa8bc63dd1a4947a671/Jinja2-2.10.1-py2.py3-none-any.whl (124kB)
+Collecting MarkupSafe>=0.23 (from Jinja2>=2.10.1->Flask->-r requirements.txt (line 1))
+  Downloading https://files.pythonhosted.org/packages/fb/40/f3adb7cf24a8012813c5edb20329eb22d5d8e2a0ecf73d21d6b85865da11/MarkupSafe-1.1.1-cp27-cp27mu-manylinux1_x86_64.whl
+Installing collected packages: click, Werkzeug, itsdangerous, MarkupSafe, Jinja2, Flask, Redis
+Successfully installed Flask-1.1.1 Jinja2-2.10.1 MarkupSafe-1.1.1 Redis-3.3.8 Werkzeug-0.16.0 click-7.0 itsdangerous-1.1.0
+Removing intermediate container b0b0442c9e15
+ ---> fcc322a561a6
+Step 5/7 : EXPOSE 80
+ ---> Running in ee3635af9913
+Removing intermediate container ee3635af9913
+ ---> 2bedcde91327
+Step 6/7 : ENV NAME World
+ ---> Running in 89be235fe289
+Removing intermediate container 89be235fe289
+ ---> 6759021f2481
+Step 7/7 : CMD ["python", "app.py"]
+ ---> Running in 74e67bdf8e7d
+Removing intermediate container 74e67bdf8e7d
+ ---> 69de929f6771
+Successfully built 69de929f6771
+Successfully tagged friendlyhello:latest
+SECURITY WARNING: You are building a Docker image from Windows against a non-Windows Docker host. All files and directories added to build context will have '-rwxr-xr-x' permissions. It is recommended to double check and reset permissions for sensitive files and directories.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker image ls
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+friendlyhello          latest              69de929f6771        2 minutes ago       148MB
+hl533/dockertutorial   part2               12ac3ee63394        5 days ago          143MB
+python                 2.7-slim            f462855313cd        2 weeks ago         137MB
+hello-world            latest              fce289e99eb9        9 months ago        1.84kB
+tutorialpart1          latest              fce289e99eb9        9 months ago        1.84kB
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker run -p 4000:80 friendlyhello
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+172.17.0.1 - - [01/Oct/2019 00:00:10] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [01/Oct/2019 00:00:10] "GET /favicon.ico HTTP/1.1" 404 -
+
+curl http://localhost:4000
+
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   3687      0 --:--:-- --:--:-- --:--:--  3806<h3>Hello World!</h3><b>Hostname:</b> 67bbbd014fcf<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker run -d -p 4000:80 friendlyhello
+141f2fd1244c2703a43155c2f059f28b123fd2ebc4f77792a0d3fd4b0f0d31cc
+C:\Program Files\Docker\Docker\Resources\bin\docker.exe: Error response from daemon: driver failed programming external connectivity on endpoint keen_joliot (4a6f899ba75c200746ece1a2a37d59884ed63e0c4669e7463be5821f8867f92e): Bind for 0.0.0.0:4000 failed: port is already allocated.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES
+67bbbd014fcf        friendlyhello       "python app.py"     4 minutes ago       Up 4 minutes        0.0.0.0:4000->80/tcp   objective_hawking
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container stop 67bbbd014fcf
+67bbbd014fcf
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker run -d -p 4000:80 friendlyhello
+ed6f42cfdc3c48656753054bf70f685a2fcc5640ea3e6ae9098acf3a54bc2d44
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES
+ed6f42cfdc3c        friendlyhello       "python app.py"     2 minutes ago       Up 2 minutes        0.0.0.0:4000->80/tcp   elastic_nightingale
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container stop 1fa4ab2cf395
+Error response from daemon: No such container: 1fa4ab2cf395
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container stop ed6f42cfdc3c
+ed6f42cfdc3c
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker tag image hl533/dockertutorial:part2
+Error response from daemon: No such image: image:latest
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker tag friendlyhello hl533/dockertutorial:part2
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker image ls
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+hl533/dockertutorial   part2               69de929f6771        22 minutes ago      148MB
+friendlyhello          latest              69de929f6771        22 minutes ago      148MB
+hl533/dockertutorial   <none>              12ac3ee63394        5 days ago          143MB
+python                 2.7-slim            f462855313cd        2 weeks ago         137MB
+hello-world            latest              fce289e99eb9        9 months ago        1.84kB
+tutorialpart1          latest              fce289e99eb9        9 months ago        1.84kB
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker push hl533/dockertutorial:part2
+The push refers to repository [docker.io/hl533/dockertutorial]
+093d8bbc5c21: Preparing
+119f4d240f84: Preparing
+83226375b248: Preparing
+a4f231ef8285: Preparing
+912905f45a34: Preparing
+411e68dbb588: Preparing
+2db44bce66cd: Preparing
+411e68dbb588: Waiting
+2db44bce66cd: Waiting
+a4f231ef8285: Layer already exists
+912905f45a34: Layer already exists
+83226375b248: Layer already exists
+411e68dbb588: Layer already exists
+2db44bce66cd: Layer already exists
+119f4d240f84: Pushed
+093d8bbc5c21: Pushed
+part2: digest: sha256:4fba28ca03e3ba2e22f504f3382477133b2a1c8eefbb0257948ca2e07ab1038e size: 1787
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker run -p 4000:80 hl533/dockertutorial:part2
+ * Serving Flask app "app" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+172.17.0.1 - - [01/Oct/2019 00:28:27] "GET / HTTP/1.1" 200 -
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ touch docker-compose.yml
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi docker-compose.yml
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm init
+Swarm initialized: current node (cfoc3lm0tssn4cbv0nlyts760) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-388v0ougpdkpldpqca9uxnrtc6yzk5alywujcr5gwjtt96fgp3-0sxlpeeez1pnp1fsr5fxv3ad0 192.168.65.3:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack deploy -c docker-compose.yml getstartedlab
+yaml: line 5: did not find expected key
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi docker-compose.yml
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi docker-compose.yml
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker image ls
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+hl533/dockertutorial   part2               69de929f6771        52 minutes ago      148MB
+friendlyhello          latest              69de929f6771        52 minutes ago      148MB
+hl533/dockertutorial   <none>              12ac3ee63394        5 days ago          143MB
+python                 2.7-slim            f462855313cd        2 weeks ago         137MB
+hello-world            latest              fce289e99eb9        9 months ago        1.84kB
+tutorialpart1          latest              fce289e99eb9        9 months ago        1.84kB
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack deploy -c docker-compose.yml getstarted
+yaml: line 5: did not find expected key
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi docker-compose.yml
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack deploy -c docker-compose.yml getstarted
+Creating network getstarted_webnet
+Creating service getstarted_web
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
+wgaefp0yn1vw        getstarted_web      replicated          5/5                 hl533/dockertutorial:part2   *:4000->80/tcp
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack services getstarted
+ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
+wgaefp0yn1vw        getstarted_web      replicated          5/5                 hl533/dockertutorial:part2   *:4000->80/tcp
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ps getstarted_web
+ID                  NAME                IMAGE                        NODE                DESIRED STATE       CURRENT STATE                ERROR               PORTS
+e5e3njpe4uv3        getstarted_web.1    hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+0p1qwxxuud5s        getstarted_web.2    hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+se1ksduympbt        getstarted_web.3    hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+3qzucwcxupde        getstarted_web.4    hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+thwal4o2jqs6        getstarted_web.5    hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls -q
+59c79e2cc561
+26e81fbdb0b4
+69b9bc5d4e2d
+98f7713a7f47
+a3954a971a39
+5656b695b215
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   4214      0 --:--:-- --:--:-- --:--:--  4370<h3>Hello World!</h3><b>Hostname:</b> 5656b695b215<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   4370      0 --:--:-- --:--:-- --:--:--  4370<h3>Hello World!</h3><b>Hostname:</b> 5656b695b215<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   5619      0 --:--:-- --:--:-- --:--:--  5900<h3>Hello World!</h3><b>Hostname:</b> 5656b695b215<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack ps getstarted
+ID                  NAME                IMAGE                        NODE                DESIRED STATE       CURRENT STATE           ERROR               PORTS
+e5e3njpe4uv3        getstarted_web.1    hl533/dockertutorial:part2   docker-desktop      Running             Running 7 minutes ago
+0p1qwxxuud5s        getstarted_web.2    hl533/dockertutorial:part2   docker-desktop      Running             Running 7 minutes ago
+se1ksduympbt        getstarted_web.3    hl533/dockertutorial:part2   docker-desktop      Running             Running 7 minutes ago
+3qzucwcxupde        getstarted_web.4    hl533/dockertutorial:part2   docker-desktop      Running             Running 7 minutes ago
+thwal4o2jqs6        getstarted_web.5    hl533/dockertutorial:part2   docker-desktop      Running             Running 7 minutes ago
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   3575      0 --:--:-- --:--:-- --:--:--  3575<h3>Hello World!</h3><b>Hostname:</b> 5656b695b215<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   3806      0 --:--:-- --:--:-- --:--:--  3806<h3>Hello World!</h3><b>Hostname:</b> 5656b695b215<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls -q
+59c79e2cc561
+26e81fbdb0b4
+69b9bc5d4e2d
+98f7713a7f47
+a3954a971a39
+5656b695b215
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container rm 5656b695b215
+Error response from daemon: You cannot remove a running container 5656b695b21599156121f118955df39704e6f48ce0090a98a6ed1485020b1234. Stop the container before attempting removal or force remove
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container stop 5656b695b215
+5656b695b215
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls -q
+59c79e2cc561
+26e81fbdb0b4
+69b9bc5d4e2d
+98f7713a7f47
+a3954a971a39
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:00:01 --:--:--     0
+curl: (7) Failed to connect to localhost port 4000: Connection refused
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
+wgaefp0yn1vw        getstarted_web      replicated          5/5                 hl533/dockertutorial:part2   *:4000->80/tcp
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ps getstarted_web
+ID                  NAME                IMAGE                        NODE                DESIRED STATE       CURRENT STATE            ERROR               PORTS
+e5e3njpe4uv3        getstarted_web.1    hl533/dockertutorial:part2   docker-desktop      Running             Running 14 minutes ago
+0p1qwxxuud5s        getstarted_web.2    hl533/dockertutorial:part2   docker-desktop      Running             Running 14 minutes ago
+se1ksduympbt        getstarted_web.3    hl533/dockertutorial:part2   docker-desktop      Running             Running 14 minutes ago
+3qzucwcxupde        getstarted_web.4    hl533/dockertutorial:part2   docker-desktop      Running             Running 14 minutes ago
+thwal4o2jqs6        getstarted_web.5    hl533/dockertutorial:part2   docker-desktop      Running             Running 14 minutes ago
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack rm getstarted_web
+Nothing found in stack: getstarted_web
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack rm getstarted
+Removing service getstarted_web
+Removing network getstarted_webnet
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm leave --force
+Node left the swarm.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ps getstarted_web
+Error response from daemon: This node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ls
+Error response from daemon: This node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack ps getstarted
+Error response from daemon: This node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm init
+Swarm initialized: current node (tntgwh4kbl19w328tli6az4d7) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-1ql9ks8h8t4kp56lrimnzki26z0mbpw0tnog311oeiodrbj9a6-3aogbye17r07i9fp0nff8jmpc 192.168.65.3:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack deploy -c docker-compose.yml getstartedlab
+Creating network getstartedlab_webnet
+Creating service getstartedlab_web
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
+bhs9nehvu0u0        getstartedlab_web   replicated          0/5                 hl533/dockertutorial:part2   *:4000->80/tcp
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm init
+Error response from daemon: This node is already part of a swarm. Use "docker swarm leave" to leave this swarm and join another one.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm leave
+Error response from daemon: You are attempting to leave the swarm on a node that is participating as a manager. Removing the last manager erases all current state of the swarm. Use `--force` to ignore this message.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm leave --leave
+unknown flag: --leave
+See 'docker swarm leave --help'.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm leave --force
+Node left the swarm.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack deploy -c docker-compose.yml getstartedlab
+this node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm init
+Swarm initialized: current node (jpf7qqy4zveobj3vxlyntv719) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-245wnhxxa1zx0rssb0tnvd9m3o8efgzm96zojcrjsw65u52nnd-36syn0y5qnlv80a5awuilnz5b 192.168.65.3:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack services
+"docker stack services" requires exactly 1 argument.
+See 'docker stack services --help'.
+
+Usage:  docker stack services [OPTIONS] STACK
+
+List the services in the stack
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack services getstartedlab
+Nothing found in stack: getstartedlab
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm leave --force
+Node left the swarm.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack rm getstartedlab
+Error response from daemon: This node is not a swarm manager. Use "docker swarm init" or "docker swarm join" to connect this node to swarm and try again.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm init
+Swarm initialized: current node (dln22x628e7fg7dcizdctmubk) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-5rh1gz25uf0bnx9bmji0kha8pbsas5tbick2i0m6g0ppgu2z6j-50uehosgfma4jzu9cxme49e1a 192.168.65.3:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack rm getstartedlab
+Nothing found in stack: getstartedlab
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE               PORTS
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm init
+Error response from daemon: This node is already part of a swarm. Use "docker swarm leave" to leave this swarm and join another one.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm leave
+Error response from daemon: You are attempting to leave the swarm on a node that is participating as a manager. Removing the last manager erases all current state of the swarm. Use `--force` to ignore this message.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm leave --force
+Node left the swarm.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm init
+Swarm initialized: current node (va6l94adnq85jzbkld0xmp5l4) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-3itk50pnm4e5mbv2tjghk7a06hm9yhu6si2bowdghrd2ucjwe6-bzkohjf5u2govwcpvew2v9qk0 192.168.65.3:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack deploy -c docker-compose getstartedlab2
+open docker-compose: The system cannot find the file specified.
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack deploy -c docker-compose.yml getstartedlab
+Creating network getstartedlab_webnet
+Creating service getstartedlab_web
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ls
+ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
+58st3k08clnn        getstartedlab_web   replicated          5/5                 hl533/dockertutorial:part2   *:4000->80/tcp
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack services getstartedlab
+ID                  NAME                MODE                REPLICAS            IMAGE                        PORTS
+58st3k08clnn        getstartedlab_web   replicated          5/5                 hl533/dockertutorial:part2   *:4000->80/tcp
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker service ps getstartedlab_web
+ID                  NAME                  IMAGE                        NODE                DESIRED STATE       CURRENT STATE            ERROR               PORTS
+12dhd6n1bx47        getstartedlab_web.1   hl533/dockertutorial:part2   docker-desktop      Running             Running 30 seconds ago
+r8hz5rsipec1        getstartedlab_web.2   hl533/dockertutorial:part2   docker-desktop      Running             Running 33 seconds ago
+p9cwahtiu716        getstartedlab_web.3   hl533/dockertutorial:part2   docker-desktop      Running             Running 31 seconds ago
+8db9v2qwu76e        getstartedlab_web.4   hl533/dockertutorial:part2   docker-desktop      Running             Running 30 seconds ago
+rzx0vtn2p2kd        getstartedlab_web.5   hl533/dockertutorial:part2   docker-desktop      Running             Running 30 seconds ago
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls -q
+be6e203dca7d
+04ceba4b2e16
+07e60f307d37
+22b7592dbc75
+e65047c3b42d
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   3575      0 --:--:-- --:--:-- --:--:--  3575<h3>Hello World!</h3><b>Hostname:</b> 04ceba4b2e16<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   3470      0 --:--:-- --:--:-- --:--:--  3470<h3>Hello World!</h3><b>Hostname:</b> 07e60f307d37<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   2070      0 --:--:-- --:--:-- --:--:--  2034<h3>Hello World!</h3><b>Hostname:</b> be6e203dca7d<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   4214      0 --:--:-- --:--:-- --:--:--  4214<h3>Hello World!</h3><b>Hostname:</b> 22b7592dbc75<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   1092      0 --:--:-- --:--:-- --:--:--  1092<h3>Hello World!</h3><b>Hostname:</b> e65047c3b42d<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ curl -4 http://localhost:4000
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   118  100   118    0     0   3575      0 --:--:-- --:--:-- --:--:--  3575<h3>Hello World!</h3><b>Hostname:</b> 04ceba4b2e16<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack ps getstartedlab
+ID                  NAME                  IMAGE                        NODE                DESIRED STATE       CURRENT STATE                ERROR               PORTS
+12dhd6n1bx47        getstartedlab_web.1   hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+r8hz5rsipec1        getstartedlab_web.2   hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+p9cwahtiu716        getstartedlab_web.3   hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+8db9v2qwu76e        getstartedlab_web.4   hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+rzx0vtn2p2kd        getstartedlab_web.5   hl533/dockertutorial:part2   docker-desktop      Running             Running about a minute ago
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ vi docker-compose.yml
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack deploy -c docker-compose.yml getstartedlab
+Updating service getstartedlab_web (id: 58st3k08clnn8x6043xxn8pm1)
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack ps getstartedlab
+ID                  NAME                   IMAGE                        NODE                DESIRED STATE       CURRENT STATE                    ERROR               PORTS
+12dhd6n1bx47        getstartedlab_web.1    hl533/dockertutorial:part2   docker-desktop      Running             Running 2 minutes ago
+r8hz5rsipec1        getstartedlab_web.2    hl533/dockertutorial:part2   docker-desktop      Running             Running 2 minutes ago
+p9cwahtiu716        getstartedlab_web.3    hl533/dockertutorial:part2   docker-desktop      Running             Running 2 minutes ago
+8db9v2qwu76e        getstartedlab_web.4    hl533/dockertutorial:part2   docker-desktop      Running             Running 2 minutes ago
+rzx0vtn2p2kd        getstartedlab_web.5    hl533/dockertutorial:part2   docker-desktop      Running             Running 2 minutes ago
+dgcoyi0sg24d        getstartedlab_web.6    hl533/dockertutorial:part2   docker-desktop      Running             Starting 6 seconds ago
+nur3i5nvk5ly        getstartedlab_web.7    hl533/dockertutorial:part2   docker-desktop      Running             Starting 6 seconds ago
+131kmtk8xe3c        getstartedlab_web.8    hl533/dockertutorial:part2   docker-desktop      Running             Running less than a second ago
+qkofo7o4rp1x        getstartedlab_web.9    hl533/dockertutorial:part2   docker-desktop      Running             Starting 6 seconds ago
+whfx9p8u6z5i        getstartedlab_web.10   hl533/dockertutorial:part2   docker-desktop      Running             Starting 6 seconds ago
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls -q
+b9cd0501dd34
+d37d5b12bab6
+02d6173f8469
+22cb52580cfc
+57f0b1f41df7
+be6e203dca7d
+04ceba4b2e16
+07e60f307d37
+22b7592dbc75
+e65047c3b42d
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack rm :
+Nothing found in stack: :
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker stack rm getstartedlab
+Removing service getstartedlab_web
+Removing network getstartedlab_webnet
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker swarm leave --force
+Error response from daemon: context deadline exceeded
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$ docker container ls -q
+
+Nerdtastic@ITSSOFLUFFY MINGW64 ~/.docker/dockeragain
+$
+
